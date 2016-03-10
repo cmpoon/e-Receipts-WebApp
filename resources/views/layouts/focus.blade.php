@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-    <title>e-Receipt</title>
+    <title>receiptBook</title>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -60,7 +60,7 @@
 <div class="container">
     <div class="content">
         @section('content')
-            <div class="title">e-Receipt</div>
+            <div class="title">Welcome to receiptBook</div>
         @show
     </div>
 </div>

@@ -12,7 +12,7 @@ class Item extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'quantity', 'unit_price', 'subtotal', 'discount'
+        'name', 'quantity', 'unit_price', 'subtotal', 'discount','time'
     ];
 
 

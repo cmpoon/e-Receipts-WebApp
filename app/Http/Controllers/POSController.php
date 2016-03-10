@@ -31,7 +31,7 @@ class POSController extends Controller {
                 $receipt->uuid = uniqid();
                 $receipt->user()->associate(Auth::user());
                 //Now
-                $receipt->time = new \DateTime("-" . rand(0, 30) . " day");
+                $receipt->time = new \DateTime("-" . rand(0, 14) . " day");
                 $receipt->total = 0;
                 $receipt->data = "";
                 $receipt->status = "new";
@@ -72,7 +72,7 @@ class POSController extends Controller {
                     $item->category()->associate($randItem->category);
                     $item->receipt()->associate($receipt);
                     $item->user()->associate(Auth::user());
-
+                    $item->time = $receipt->time;
                     $item->unit = (empty($randItem->unit)?"pc":$randItem->unit);
 
                     $total += $subtotal;

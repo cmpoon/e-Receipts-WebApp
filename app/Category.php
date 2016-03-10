@@ -28,6 +28,11 @@ class Category extends Model
         return $this->hasMany('App\Item');
     }
 
+    public function budgets()
+    {
+        return $this->hasMany('App\Budget');
+    }
+
 
     public function receipts()
     {

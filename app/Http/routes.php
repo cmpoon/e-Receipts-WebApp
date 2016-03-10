@@ -43,7 +43,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('/', function () {
         return view('welcome');
     });
-
+    Route::any('/index.html', function () {
+        return view('welcome');
+    });
 
     /**
      * POS Sim
@@ -75,6 +77,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::controller('budget', 'BudgetController');
 
 
+
+    /**
+     * Projection feature
+     */
+
+    Route::controller('projection', 'ProjectionController');
 
 // Authentication Routes...
     Route::auth();
