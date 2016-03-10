@@ -1,0 +1,1 @@
+<option value="{{ $category->id }}">{{ $category->name }}</option>
