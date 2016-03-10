@@ -173,10 +173,23 @@ class ProjectionController extends Controller
 
         $subtitle = ($cateReq?ucfirst($category->name)." in ":"").date('F', $start->timestamp);
 
+        $categories = Category::all();
+
+        $selcate = array();
+        $i = 0;
+        foreach($categories as $cateEntry){
+            $selcate[$i] = array();
+            $selcate[$i]['id'] = $cateEntry->id;
+            $selcate[$i]['name'] = ucfirst($cateEntry->name);
+            $selcate[$i]['selected'] = ($cateEntry->id == $cateReq? true : false);
+            $i++;
+        }
+
         return view('projection.index', [
             'days' => $days, 'budget' => $budgetData, 'projection' => $regData,
             'month' => $subtitle, 'start'=>$start->format("Y,n-1,d"),
-            'end'=>$end->format("Y,n-1,d"), 'now'=>date("Y,n-1,d")
+            'end'=>$end->format("Y,n-1,d"), 'now'=>date("Y,n-1,d"),
+            'categories'=>$selcate
         ]);
 
     }
