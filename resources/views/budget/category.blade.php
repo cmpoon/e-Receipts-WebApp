@@ -19,12 +19,12 @@
                 text: '{{ ucfirst($category->name) }} Spending Breakdown {{ $subtitle  }}'
             },
             subtitle: {
-                text: '{{ $percentage }}%<br/>Used',
+                text: '{{ $percentage }}%<br/>Used'/*,
                 style:{fontSize:"2em"
                 },
                 align: 'center',
                 verticalAlign: 'middle',
-                y: 25
+                y: 25*/
             },
 
             plotOptions: {

@@ -9,4 +9,8 @@ use App\Http\Requests;
 class AwardController extends Controller
 {
     //
+
+    public function getIndex(){
+
+    }
 }

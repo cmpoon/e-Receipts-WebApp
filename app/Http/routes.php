@@ -84,6 +84,13 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::controller('projection', 'ProjectionController');
 
+
+    /**
+     * Awards feature
+     */
+
+    Route::controller('awards', 'AwardController');
+
 // Authentication Routes...
     Route::auth();
 

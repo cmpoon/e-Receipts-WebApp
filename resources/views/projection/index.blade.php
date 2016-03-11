@@ -15,7 +15,7 @@
 
 
             $('#container').highcharts({
-                credit: {
+                credits:{
                     enabled: false
                 },
                 chart: {
