@@ -67,6 +67,7 @@
 @endsection
 
 @section('content')
+    <p>Tap on a slice of pie to check out the breakdown of your spend.</p>
     <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 20px auto"></div>
 
     <div class="ui-corner-all custom-corners">

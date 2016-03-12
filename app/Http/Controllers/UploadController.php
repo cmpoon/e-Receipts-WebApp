@@ -8,43 +8,59 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Symfony\Component\HttpFoundation\Response;
 
-class UploadController extends Controller
-{
+class UploadController extends Controller {
 
 
     //
-    public function getIndex(Request $request){
+    public function getIndex(Request $request) {
         //Show outstanding uuid here or false
 
+        $userid = null;
+
         try {
-            $receipt = Receipt::where('status','new')->take(1)->get();
+            $receipt = Receipt::where('status', 'new')->take(1)->with('vendor')->get();
 
             if ($receipt->count() >= 1) {
-
-                return response()->json(['outstanding' => $receipt->first()->uuid]);
-            }else{
+                $rData = $receipt->first();
+                return response()->json(['outstanding' => $rData->uuid, 'price'=>$rData->total,
+                    'vendor' =>$rData->vendor->name,'id'=>$rData->id]);
+            } else {
                 return response()->json(['outstanding' => false]);
             }
 
-        }catch(ModelNotFoundException $exp) {
+        } catch (ModelNotFoundException $exp) {
             return response()->json(['outstanding' => false]);
         }
 
     }
 
-    public function getLink(){
+    public function getLink(Request $request) {
         //Show outstanding uuid here or false
 
-        $receipt = Receipt::where('status','new')->firstOrFail();
-        $receipt->status = "active";
+        $uuid = $request->input("uuid");
 
-        $receipt->save();
+        if ($uuid) {
+            if ($uuid !== "test") {
+                $receipt = Receipt::where('status', 'new')->where('uuid', $uuid)->firstOrFail();
+            } else {
+                $receipt = null;
+            }
+
+        } else {
+            $receipt = Receipt::where('status', 'new')->firstOrFail();
+        }
+
+        if ($receipt) {
+
+
+            $receipt->status = "active";
+
+            $receipt->save();
+        }
 
         return response()->json(['link' => true]);
 
     }
-
-
 
 
 }

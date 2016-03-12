@@ -107,8 +107,7 @@ class POSController extends Controller {
 
         }
 
-
-        return view("pos.index", ["receipt" => $receipt]);
+        return view("pos.index", ["vendor" => $receipt->vendor->name, "price" => $receipt->total]);
     }
 
 

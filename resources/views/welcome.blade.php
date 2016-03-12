@@ -37,7 +37,7 @@
 <body>
 <div class="container">
     <div class="content">
-        <div class="title">Welcome to receiptBook</div>
+        <div class="title">ReceiptBook</div>
     </div>
 </div>
 

@@ -60,7 +60,7 @@
 <div class="container">
     <div class="content">
         @section('content')
-            <div class="title">Welcome to receiptBook</div>
+            <div class="title">Coming Soon</div>
         @show
     </div>
 </div>

@@ -47,6 +47,10 @@ Route::group(['middleware' => ['web']], function () {
         return view('welcome');
     });
 
+    Route::any('/ni', function () {
+        return view('layouts.focus');
+    });
+
     /**
      * POS Sim
      *

@@ -11,6 +11,10 @@
                 console.log("Changing Category");
                 //document.getElementById("changeform").submit();
                 $('#changeform').submit();
+
+
+                window.location.href = "{{ action('ProjectionController@getIndex') }}?category=" + $('#category').val();
+
             });
 
 
