@@ -25,15 +25,15 @@
         </tr>
         <tr>
             <th style="color:Grey;width:33%" colspan="2">Sub-total</th>
-            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ $receipt->total/1.2 }}</th>
+            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ number_format ($receipt->total/1.2 ,2) }}</th>
         </tr>
         <tr>
             <th style="color:Grey;width:33%" colspan="2">VAT</th>
-            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ $receipt->total*0.2 }}</th>
+            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ number_format ($receipt->total*0.2,2) }}</th>
         </tr>
         <tr>
             <th style="color:Grey;width:33%" colspan="2">Total</th>
-            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ $receipt->total }}</th>
+            <th style="color:#fff;text-align:right;font-weight: bold">&pound;{{ number_format ($receipt->total,2) }}</th>
         </tr>
     </table>
 

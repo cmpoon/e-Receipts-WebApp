@@ -46,7 +46,7 @@
 
     <style>
         .receipt{
-            font-size: 5em;
+            font-size: 3em;
         }
     </style>
 
@@ -60,6 +60,7 @@
 
     <div class="receipt" id="receipt">
         <p>{{ $vendor }} - &pound;{{ $price }}</p>
+        <p></p>
     </div>
 
     <a href="{{ url('pos') }}" class="btn btn-info" style="display:none;" id="next">Next Receipt</a>
