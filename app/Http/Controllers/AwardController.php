@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Budget;
 use App\Category;
 use App\Receipt;
+use App\Voucher;
 use Auth;
 use Carbon\Carbon;
 use DateInterval;
@@ -20,7 +21,14 @@ class AwardController extends Controller {
     public function getIndex() {
 
         //saver
-        //TODO: Vouchers Not implemented
+        $vouchersExpiredActive = Voucher::where('user_id', Auth::user()->id)
+            ->where('status', 'active')
+            ->where('expiration','<', Carbon::now())
+            ->where('expiration','>', Carbon::now()->subWeek())
+            ->count();
+        $saver = $vouchersExpiredActive  == 0;
+
+
 
         //cheapshopper
         $cheapshopper = false;
@@ -46,7 +54,7 @@ class AwardController extends Controller {
         $projectionperfection = $regression <= $totalBudget;
 
         return view('awards.index', [
-            'saver' => false, 'cheapshopper' => $cheapshopper, 'crazycollector' => $crazycollector, 'projectionperfection' => $projectionperfection
+            'saver' => $saver, 'cheapshopper' => $cheapshopper, 'crazycollector' => $crazycollector, 'projectionperfection' => $projectionperfection
         ]);
     }
 
@@ -55,7 +63,8 @@ class AwardController extends Controller {
         //Food
         $category = Category::where('name', $name)->firstOrFail();
 
-        $budget = Budget::where('user_id', Auth::user()->id)->where('category_id', $category->id)
+        $budget = Budget::where('user_id', Auth::user()->id)
+            ->where('category_id', $category->id)
             ->where('start', '<', Carbon::now())
             ->where('end', '>', Carbon::now())
             ->first();
