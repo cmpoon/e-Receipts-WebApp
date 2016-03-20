@@ -37,6 +37,7 @@ class SearchController extends Controller
                     $days[$day]['count'] = 0;
                     $days[$day]['receipts'] = array();
                 }
+                $receipt->time = date_format(date_create($receipt->time),"H:i");
 
                 $days[$day]['receipts'][] = $receipt;
                 $days[$day]['count']++;

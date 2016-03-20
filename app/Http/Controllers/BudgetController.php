@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Budget;
 use App\Category;
 use Carbon\Carbon;
+use DateTime;
 use DB;
 use Illuminate\Http\Request;
 
@@ -101,6 +102,7 @@ class BudgetController extends Controller
             $end = Carbon::now()->endOfMonth();
         }
 
+
         $grandTotal = DB::table('receipts')
             ->select(DB::raw('SUM(total) as grandtotal'))
             ->where('time', '>', $start)
@@ -108,6 +110,7 @@ class BudgetController extends Controller
             ->where('status','active')
             ->where('user_id', Auth::user()->id)
             ->first()->grandtotal;
+
 
         ////values add up to 100(category value/totalvalue * 100)
         $category_data = DB::table('items')
@@ -136,12 +139,22 @@ class BudgetController extends Controller
 
         }
 
-        $items= $category->items()->with("receipt")->get();
+        $items= $category->items()->where('time', '>', $start)
+            ->where('time', '<', $end)
+            ->where('user_id', Auth::user()->id)
+            ->with("receipt")->get();
         //need to group by vendor_id
 
         $vendor_spend = array();
 
         foreach($items as $item){
+            $time = new DateTime($item->receipt->date);
+
+            if ($item->receipt->status != "active"
+            || $time < $start || $time > $end){
+                continue;
+            }
+
             $vendor = $item->receipt->vendor()->first();
 
             if (!isset($vendor_spend[$vendor->name])){
