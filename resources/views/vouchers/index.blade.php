@@ -1,4 +1,9 @@
 @extends('layouts.master')
+
+@section('javascript')
+    <script src="/assets/js/jsbarcode.min.js"></script>
+@endsection
+
 @section('content')
     <form class="ui-filterable">
         <div class="ui-field-contain">

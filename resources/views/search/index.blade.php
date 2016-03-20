@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('javascript')
-
+    <script src="/assets/js/jsbarcode.min.js"></script>
 
     <script>
         $(document).ready(function() {
