@@ -95,6 +95,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::controller('awards', 'AwardController');
 
+    /**
+     * Vouchers feature
+     */
+
+    Route::controller('vouchers', 'VoucherController');
+
 // Authentication Routes...
     Route::auth();
 

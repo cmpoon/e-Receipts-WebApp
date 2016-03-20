@@ -139,10 +139,7 @@ class BudgetController extends Controller
 
         }
 
-        $items= $category->items()->where('time', '>', $start)
-            ->where('time', '<', $end)
-            ->where('user_id', Auth::user()->id)
-            ->with("receipt")->get();
+        $items= $category->items()->with("receipt")->get();
         //need to group by vendor_id
 
         $vendor_spend = array();
@@ -160,6 +157,7 @@ class BudgetController extends Controller
             if (!isset($vendor_spend[$vendor->name])){
                 $vendor_spend[$vendor->name] = 0;
             }
+
 
             $vendor_spend[$vendor->name] += $item->subtotal;
         }

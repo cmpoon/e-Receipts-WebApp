@@ -60,6 +60,8 @@ class ProjectionController extends Controller
 
         $dailySpend = array();
 
+
+        //Get daily spend data
         if ($cateReq) {
             $items = Item::where('user_id', Auth::user()->id)
                 ->where('category_id', $cateReq)
@@ -121,6 +123,8 @@ class ProjectionController extends Controller
             }
         }
 
+
+        //Process data
         if (!empty($dailySpend)) {
 
 

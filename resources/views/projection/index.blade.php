@@ -8,10 +8,15 @@
 
 
             $('#category').change(function () {
-                console.log("Changing Category");
-                //document.getElementById("changeform").submit();
+                console.log("Changing Category to "+$('#category').val());
+                $('#category').selectmenu('disable');
+                var btn = $('#submit');
+                btn.disabled = true;
+                btn.val("One moment please...");
+                btn.button("refresh");
+                btn.button("option", "icon", "recycle");
+                btn.button("disable");
                 $('#changeform').submit();
-
 
                 window.location.href = "{{ action('ProjectionController@getIndex') }}?category=" + $('#category').val();
 
@@ -134,7 +139,7 @@
                                     @if($cateEntry['selected'])selected="selected"@endif>{{  $cateEntry['name'] }}</option>
                         @endforeach
                     </select>
-                    <input type="submit" id="submit" class="ui-shadow ui-btn ui-corner-all ui-mini" value="Go"/>
+                    <input type="submit" id="submit" data-icon="carat-r" data-iconpos="right" class="ui-btn ui-shadow ui-corner-all" value="Switch Category"/>
 
                 </form>
             </div>

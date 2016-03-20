@@ -19,6 +19,7 @@ class CreateVouchersTable extends Migration
             $table->integer('vendor_id')->index();
             $table->string("name");
             $table->string("details")->nullable();
+            $table->enum('status', ['new','active', 'used']);
             $table->dateTime("expiration");
             $table->timestamps();
         });

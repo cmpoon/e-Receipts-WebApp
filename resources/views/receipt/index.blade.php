@@ -1,5 +1,18 @@
 @extends("layouts.master")
 
+@section('javascript')
+    <script src="/assets/js/jsbarcode.min.js"></script>
+    <script>
+        $(function() {
+            JsBarcode("#barcode", "{{ $receipt->uuid }}", {
+                height: 20,
+                background: "#333333",
+                lineColor: "#fff"
+            });
+        });
+    </script>
+@endsection
+
 @section('content')
     <a href="{{  action('SearchController@getIndex') }}"
        class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ">Back</a>
@@ -34,7 +47,6 @@
             <th style="color:#fff;text-align:right;font-weight: bold">{{ number_format ($receipt->total,2) }}</th>
         </tr>
     </table>
+    <p style="text-align:center;font-size: small; margin-top: 30px;">Receipt ID<br/><img id="barcode" alt="{{ $receipt->uuid }}" /></p>
 
 @endsection
-
- 
