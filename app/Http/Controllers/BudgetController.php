@@ -139,7 +139,11 @@ class BudgetController extends Controller
 
         }
 
-        $items= $category->items()->with("receipt")->get();
+        $items= $category->items()
+            ->where('time', '>', $start)
+            ->where('time', '<', $end)
+            ->with("receipt")
+            ->get();
         //need to group by vendor_id
 
         $vendor_spend = array();
