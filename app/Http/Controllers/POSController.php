@@ -107,7 +107,7 @@ class POSController extends Controller {
 
         }
 
-        return view("pos.index", ["vendor" => $receipt->vendor->name, "price" => $receipt->total]);
+        return view("POS.index", ["vendor" => $receipt->vendor->name, "price" => $receipt->total]);
     }
 
 
@@ -116,7 +116,7 @@ class POSController extends Controller {
         //Find last generated receipt and trigger nfcpy to send this uuid
 
 
-        return view("pos.send");
+        return view("POS.send");
     }
 
     public function check(Request $request) {
