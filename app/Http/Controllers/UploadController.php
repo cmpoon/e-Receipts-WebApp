@@ -39,12 +39,8 @@ class UploadController extends Controller {
 
         $uuid = $request->input("uuid");
 
-        if ($uuid) {
-            if ($uuid !== "test") {
+        if ($uuid && $uuid !== "test") {
                 $receipt = Receipt::where('status', 'new')->where('uuid', $uuid)->firstOrFail();
-            } else {
-                $receipt = null;
-            }
 
         } else {
             $receipt = Receipt::where('status', 'new')->firstOrFail();
@@ -56,9 +52,11 @@ class UploadController extends Controller {
             $receipt->status = "active";
 
             $receipt->save();
+
+            return response()->json(['link' => true]);
         }
 
-        return response()->json(['link' => true]);
+        return response()->json(['link' => false]);
 
     }
 

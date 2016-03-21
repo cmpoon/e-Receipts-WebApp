@@ -53,13 +53,13 @@
 @endsection
 
 @section('content')
-    <div class="title" id="instruction"><p>Payment Successful</p>
-        <p>Tap Phone Now</p>
+    <div class="title" id="instruction">
+        <p>Tap Phone to<br/>Collect Receipt</p>
     </div>
     <div class="title"> <img src="/assets/images/load.gif" alt="" id="loadimg" /></div>
 
     <div class="receipt" id="receipt">
-        <p>{{ $vendor }} - &pound;{{ $price }}</p>
+        <p>{{ $vendor }} - &pound;{{ number_format($price, 2) }}</p>
         <p></p>
     </div>
 
